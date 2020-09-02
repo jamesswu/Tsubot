@@ -1,7 +1,5 @@
 const settings = require('./resources/config/settings');
 
-
-const temp = require('minecraft-api');
 const Discord = require('discord.js');
 const client = new Discord.Client();
 
