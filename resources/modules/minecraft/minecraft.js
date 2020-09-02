@@ -1,5 +1,5 @@
 const mcapi = require('minecraft-api');
 
 async function foo() {
-    const temp = mcapi.nameForUuid
+    const temp = 10;
 }
