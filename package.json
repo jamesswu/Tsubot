@@ -1,0 +1,30 @@
+{
+  "name": "tsubot",
+  "version": "1.0.0",
+  "description": "Multipurpose Discord Bot",
+  "main": "app.js",
+  "scripts": {
+    "watch": "nodemon app",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "lint": "eslint . --ext .js",
+    "build-doc": "jsdoc -c .jsdoc.conf.json -r ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jamesswu/Tsubot.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jamesswu/Tsubot/issues"
+  },
+  "homepage": "https://github.com/jamesswu/Tsubot#readme",
+  "dependencies": {
+    "canvas": "^2.6.1",
+    "discord.js": "^12.3.1"
+  },
+  "devDependencies": {
+    "eslint": "^7.10.0",
+    "eslint-config-google": "^0.14.0"
+  }
+}

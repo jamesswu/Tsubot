@@ -103,4 +103,9 @@ dist
 # TernJS port file
 .tern-port
 
-resources/config/settings.js
+# secrets (eg, tokens)
+resources/config/secrets.js
+
+# out folder of jsdoc
+
+out/
