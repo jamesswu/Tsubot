@@ -1,9 +1,5 @@
-const fs = require('fs');
-
 const Discord = require('discord.js');
-
 const {createCanvas} = require('canvas');
-
 const Temperature = require('./math/temperature');
 
 /** The main entry-point command handler class. */
@@ -126,10 +122,9 @@ class CommandHandler {
     ctx.stroke();
 
     const buffer = canvas.toBuffer('image/png');
-    fs.writeFileSync('./test.png', buffer);
 
     const attachment = new Discord.MessageAttachment(
-        './test.png',
+        buffer,
         'test.png',
     );
 
@@ -138,8 +133,6 @@ class CommandHandler {
             .setTitle(':kekw:')
             .attachFiles(attachment)
             .setImage('attachment://test.png'),
-    ).then(
-        () => fs.unlinkSync('./test.png'),
     );
   }
 }
