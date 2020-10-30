@@ -7,6 +7,7 @@
     "watch": "nodemon app",
     "test": "echo \"Error: no test specified\" && exit 1",
     "lint": "eslint . --ext .js",
+    "lint-fix": "eslint . --ext .js --fix",
     "build-doc": "jsdoc -c .jsdoc.conf.json -r ."
   },
   "repository": {
@@ -21,7 +22,8 @@
   "homepage": "https://github.com/jamesswu/Tsubot#readme",
   "dependencies": {
     "canvas": "^2.6.1",
-    "discord.js": "^12.3.1"
+    "discord.js": "^12.3.1",
+    "lodash": "^4.17.20"
   },
   "devDependencies": {
     "eslint": "^7.10.0",

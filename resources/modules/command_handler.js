@@ -1,6 +1,9 @@
+const _ = require('lodash');
 const Discord = require('discord.js');
 const {createCanvas} = require('canvas');
+
 const Temperature = require('./math/temperature');
+const ChessUtil = require('./chess/chess_util');
 
 /** The main entry-point command handler class. */
 class CommandHandler {
@@ -41,7 +44,9 @@ class CommandHandler {
             this._celciusToFahrenheit(msg, args);
             break;
           case 'testCanvas':
-            this.testCanvas(msg, args);
+            this._testCanvas(msg, args);
+          case 'testChess':
+            this._testChess(msg, args);
           default:
             break;
         }
@@ -106,7 +111,7 @@ class CommandHandler {
    * @param {Message} msg - The message invoking the command.
    * @param {Array<string>} args - The command args.
    */
-  testCanvas(msg, args) {
+  _testCanvas(msg, args) {
     const canvas = createCanvas(200, 200);
     const ctx = canvas.getContext('2d');
     ctx.font = '30px Impact';
@@ -133,6 +138,18 @@ class CommandHandler {
             .setTitle(':kekw:')
             .attachFiles(attachment)
             .setImage('attachment://test.png'),
+    );
+  }
+
+  /**
+   * Handle the _testChess bot command.
+   * @param {Message} msg - The message invoking the command.
+   * @param {Array<string>} args - The command args.
+   */
+  _testChess(msg, args) {
+    const FENBoard = ChessUtil.parseFEN(args[1]);
+    msg.channel.send(
+        ChessUtil.getFENBoardAt(FENBoard, args[2], _.parseInt(args[3])),
     );
   }
 }
