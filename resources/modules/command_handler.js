@@ -3,7 +3,9 @@ const Discord = require('discord.js');
 const {createCanvas} = require('canvas');
 
 const Temperature = require('./math/temperature');
-const ChessUtil = require('./chess/chess_util');
+const Time = require('./math/time');
+
+// const ChessUtil = require('./chess/chess_util');
 
 /** The main entry-point command handler class. */
 class CommandHandler {
@@ -45,8 +47,10 @@ class CommandHandler {
             break;
           case 'testCanvas':
             this._testCanvas(msg, args);
-          case 'testChess':
-            this._testChess(msg, args);
+          // case 'testChess':
+          //   this._testChess(msg, args);
+          case 'remind':
+            this._remind(msg,args);
           default:
             break;
         }
@@ -115,16 +119,22 @@ class CommandHandler {
     const canvas = createCanvas(200, 200);
     const ctx = canvas.getContext('2d');
     ctx.font = '30px Impact';
-    ctx.rotate(0.1);
-    ctx.fillText('Awesome!', 50, 100);
+    // ctx.rotate(0.1);
+    ctx.fillText('XXX', 50, 100);
 
     // Draw line under text
-    const text = ctx.measureText('Awesome!');
-    ctx.strokeStyle = 'rgba(0,0,0,0.5)';
+    const text = ctx.measureText('XXX');
+    ctx.strokeStyle = 'rgb(200,0,0)';
     ctx.beginPath();
     ctx.lineTo(50, 102);
     ctx.lineTo(50 + text.width, 102);
     ctx.stroke();
+
+ 
+    ctx.beginPath()
+    ctx.moveTo(71,68)
+    ctx.lineTo(71,68+text.width)
+    ctx.stroke()
 
     const buffer = canvas.toBuffer('image/png');
 
@@ -146,12 +156,47 @@ class CommandHandler {
    * @param {Message} msg - The message invoking the command.
    * @param {Array<string>} args - The command args.
    */
-  _testChess(msg, args) {
-    const FENBoard = ChessUtil.parseFEN(args[1]);
-    msg.channel.send(
-        ChessUtil.getFENBoardAt(FENBoard, args[2], _.parseInt(args[3])),
-    );
-  }
+  // _testChess(msg, args) {
+  //   const FENBoard = ChessUtil.parseFEN(args[1]);
+  //   msg.channel.send(
+  //       ChessUtil.getFENBoardAt(FENBoard, args[2], _.parseInt(args[3])),
+  //   );
+  // }
+
+
+
+
+  // n # of args
+  // args[n-1] = min
+  // args[n-2] = # of minutes
+  // args[n-3] = hr
+  // args[n-4] = # of hours
+  // args[1] to args[n-5] = reason for reminder
+
+  _remind(msg,args) {
+    switch(args[args.length-1]) {
+      case 'min':
+        msg.author.send(`you will be reminded in ${args[2]} minute(s).`);
+        setTimeout(() => {
+            msg.author.send("you have been reminded");
+            
+        },Time.minutesToMilliseconds(parseInt(args[2],10)));
+        break;
+      case 'hr':
+        msg.author.send(`you will be reminded in ${args[3]} hour(s).`);
+        setTimeout(() => {
+            msg.author.send("you have been reminded.");
+            
+        },Time.hoursToMilliseconds(parseInt(args[3],10)));
+        break;
+      default:
+        break;
+    }
+    return;
+}
+
+
+
 }
 
 module.exports = CommandHandler;

@@ -4,7 +4,7 @@
   "description": "Multipurpose Discord Bot",
   "main": "app.js",
   "scripts": {
-    "watch": "nodemon app",
+    "watch": "nodemon ./resources/app",
     "test": "echo \"Error: no test specified\" && exit 1",
     "lint": "eslint . --ext .js",
     "lint-fix": "eslint . --ext .js --fix",
@@ -23,7 +23,9 @@
   "dependencies": {
     "canvas": "^2.6.1",
     "discord.js": "^12.3.1",
-    "lodash": "^4.17.20"
+    "dotenv": "^8.2.0",
+    "lodash": "^4.17.20",
+    "nodemon": "^2.0.6"
   },
   "devDependencies": {
     "eslint": "^7.10.0",

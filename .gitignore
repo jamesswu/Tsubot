@@ -103,8 +103,8 @@ dist
 # TernJS port file
 .tern-port
 
-# secrets (eg, tokens)
-resources/config/secrets.js
+#.vscode
+.vscode
 
 # out folder of jsdoc
 
